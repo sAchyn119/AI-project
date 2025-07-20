@@ -1,57 +1,46 @@
-# 📊 AI-Powered Spam Email Classifier  
-*Final project for the Building AI course*
+# journal_ai.py
 
----
+from textblob import TextBlob
+import datetime
 
-## ✅ Summary  
-This project uses a Naive Bayes machine learning model to classify short messages (like SMS or email) as **spam** or **legitimate**. It demonstrates how AI can filter messages automatically by analyzing the language and structure of the text.
+# Function to analyze sentiment
+def analyze_sentiment(text):
+    blob = TextBlob(text)
+    polarity = blob.sentiment.polarity
+    if polarity > 0.2:
+        mood = "Positive 😊"
+        message = "You seem to be in a good mood today. Keep it going!"
+    elif polarity < -0.2:
+        mood = "Negative 😟"
+        message = "You might be feeling low. Try some self-care or talk to a friend."
+    else:
+        mood = "Neutral 😐"
+        message = "Your mood seems neutral. Reflecting daily can help spot trends."
+    
+    return mood, polarity, message
 
----
+# Function to save entry
+def save_entry(entry, mood, polarity):
+    date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("journal_entries.txt", "a") as f:
+        f.write(f"\nDate: {date}\n")
+        f.write(f"Entry: {entry}\n")
+        f.write(f"Mood: {mood}\n")
+        f.write(f"Polarity Score: {polarity:.2f}\n")
+        f.write("-" * 40 + "\n")
 
-## 📚 Background  
-Spam messages are a daily annoyance for people and businesses. They waste time, clutter inboxes, and can even be dangerous (e.g., phishing).  
+# Main
+if __name__ == "__main__":
+    print("📝 Welcome to AI-Powered Mental Health Journal")
+    print("Type your journal entry below. Press Enter when done.\n")
 
-I wanted to explore how AI can help build a **simple but effective spam filter** using real-world data and basic machine learning techniques. This project helps understand how **text classification** and **natural language processing (NLP)** work in AI.
+    entry = input("Your Entry: ")
 
-### Problems this addresses:
-- Unwanted or harmful messages in inboxes
-- Time wasted sorting through spam
-- Manual email filtering not scalable
+    mood, polarity, message = analyze_sentiment(entry)
+    save_entry(entry, mood, polarity)
 
----
-
-## ⚙️ How is it used?  
-The solution is designed to:
-- Take in a text message or email
-- Use AI to determine if it's spam or not
-- Output the result to the user
-
-It can be used in:
-- Email applications  
-- SMS services  
-- Notification filtering systems
-
-**Users**:  
-- Email providers  
-- Individuals receiving many messages  
-- Organizations with automated message systems  
-
----
-
-## 🖼️ Images  
-Here’s how a basic spam classifier works:  
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*24yVgCQmC3FTJpT10xqF3g.png" width="400">
-
----
-
-## 💻 Code Example
-
-```python
-def predict_email(text):
-    text_vec = vectorizer.transform([text])
-    prediction = model.predict(text_vec)[0]
-    return "Spam" if prediction == 1 else "Legit"
-
-# Try it out
-print(predict_email("Win a FREE iPhone now! Click here."))
-# Output: Spam
+    print("\n🧠 Sentiment Analysis Result:")
+    print(f"Mood Detected: {mood}")
+    print(f"Polarity Score: {polarity:.2f}")
+    print(f"Feedback: {message}")
+    print("\n✅ Your entry has been saved.\n")
