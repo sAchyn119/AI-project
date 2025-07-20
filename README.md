@@ -4,7 +4,7 @@ Final project for the [Building AI course](https://www.elementsofai.com/)
 
 ---
 
-## 💡 Summary
+##  Summary
 
 AI-Powered Mental Health Journal is an intelligent journaling assistant that helps users track their emotional well-being. It uses natural language processing to analyze journal entries, detect emotional patterns, and provide helpful reflections and suggestions.
 
