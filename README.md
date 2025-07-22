@@ -1,9 +1,5 @@
 # 🤖 AI-Powered Mental Health Journal
 
-##  Summary
-
-AI-Powered Mental Health Journal is an intelligent journaling assistant that helps users track their emotional well-being. It uses natural language processing to analyze journal entries, detect emotional patterns, and provide helpful reflections and suggestions.
-
 ## 🧠 Background
 
 ### The Problem:
@@ -48,3 +44,8 @@ def analyze_journal(text):
 # Sample journal entry
 entry = "I felt anxious during my presentation, but I was relieved when it was over."
 print(analyze_journal(entry))
+
+
+##  Summary
+
+AI-Powered Mental Health Journal is an intelligent journaling assistant that helps users track their emotional well-being. It uses natural language processing to analyze journal entries, detect emotional patterns, and provide helpful reflections and suggestions.
